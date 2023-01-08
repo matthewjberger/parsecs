@@ -1,5 +1,6 @@
 use criterion::{criterion_group, criterion_main, Criterion};
 use parsecs::{izip, system, world::World};
+use std::time::Duration;
 
 fn insertion(c: &mut Criterion) {
 	c.bench_function("inserting 1 million entities", |b| {
@@ -129,7 +130,7 @@ fn complex_entity_system(c: &mut Criterion) {
 
 criterion_group!(
 	name = benches;
-	config = Criterion::default().sample_size(50);
+	config = Criterion::default().measurement_time(Duration::from_secs(20));
 	targets =
 		insertion,
 		removal,
